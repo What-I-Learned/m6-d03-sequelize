@@ -15,6 +15,7 @@ productsRouter.get("/", async (req, res, next) => {
             [Op.or]: [{ name: { [Op.iLike]: `%${req.query.search}%` } }],
           }
         : {},
+      oder: [["price", "ASC"]],
     });
     res.send(data);
   } catch (err) {
