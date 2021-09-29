@@ -9,13 +9,12 @@ productsRouter.get("/", async (req, res, next) => {
   try {
     const data = await Product.findAll({
       include: Review,
-
+      order: [["price", "DESC"]],
       where: req.query.search
         ? {
             [Op.or]: [{ name: { [Op.iLike]: `%${req.query.search}%` } }],
           }
         : {},
-      oder: [["price", "ASC"]],
     });
     res.send(data);
   } catch (err) {

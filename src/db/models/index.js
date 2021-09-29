@@ -6,15 +6,7 @@ import Review from "./reviews.js";
 // hasMany & belongsTo
 //3. understand for each association which model is TARGET & which model is SOURCE
 // A.hasMany(B) => foreign key in the the TARGET B model
-Product.hasMany(Review, {
-  foreignKey: {
-    name: "product_id",
-  },
-}); // => authorId  Author.findAll({include: Article})
-Review.belongsTo(Product, {
-  foreignKey: {
-    name: "product_id",
-  },
-}); // => Article.findAll({include:Author})
+Product.hasMany(Review); // => authorId  Author.findAll({include: Article})
+Review.belongsTo(Product); // => Article.findAll({include:Author})
 
 export default { Product, Review };

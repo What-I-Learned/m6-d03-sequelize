@@ -27,9 +27,15 @@ reviewsRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-reviewsRouter.post("/", async (req, res, next) => {
+reviewsRouter.post("/new_review/:productID", async (req, res, next) => {
   try {
-    const data = await Review.create(req.body);
+    const productID = req.params.productID;
+    const newReview = {
+      ...req.body,
+      ProductId: productID,
+    };
+    const data = await Review.create(newReview);
+    // data.ProductId = productID;
     res.send(data);
   } catch (err) {
     console.log(err);
