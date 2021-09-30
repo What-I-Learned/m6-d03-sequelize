@@ -3,12 +3,14 @@ import db from "../../db/models/index.js";
 import s from "sequelize";
 const { Op } = s;
 const productsRouter = express.Router();
-const { Product, Review } = db;
+const { Product, Review, Category, User } = db;
 
 productsRouter.get("/", async (req, res, next) => {
   try {
     const data = await Product.findAll({
       include: Review,
+      include: Category,
+      include: User,
       order: [["price", "DESC"]],
       where: req.query.search
         ? {
