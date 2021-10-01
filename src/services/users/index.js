@@ -1,15 +1,15 @@
 import express from "express";
 import db from "../../db/models/index.js";
-
-const { Op } = s;
+import sequelize from "sequelize";
+const { Op } = sequelize;
 const userRouter = express.Router();
 
-const { User, Product } = db;
+const { User, Product, Category } = db;
 
 userRouter.get("/", async (req, res, next) => {
   try {
     const data = await Author.findAll({
-      include: Product,
+      include: [Product, { mode: Category, through: { attributes: [] } }],
       wher: req.query.search
         ? {
             [Op.or]: [
@@ -32,6 +32,7 @@ userRouter.get("/:userId", async (req, res, next) => {
     const data = await User.findOne({
       where: { id: req.params.userId },
       include: Product,
+      include: [User, { model: Category, through: { attributes: [] } }, Review],
     });
     if (data) {
       res.send(data);

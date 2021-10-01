@@ -12,7 +12,7 @@ const Review = sequelize.define("review", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  usernames: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },

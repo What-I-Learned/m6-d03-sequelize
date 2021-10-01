@@ -2,6 +2,8 @@ import Category from "./categories.js";
 import Product from "./products.js";
 import Review from "./reviews.js";
 import User from "./user.js";
+import ProductCategory from "./productCategories.js";
+import ProductsAndUsers from "./productsAndUsers.js";
 
 //1. choose the type of relationship (1:1, 1:n, n:m)
 // 2. understand what methods to use for this specific type of relationship
@@ -22,12 +24,12 @@ Category.belongsToMany(Product, {
 // user
 User.belongsToMany(Product, {
   through: {
-    model: ProductsAndCategories,
+    model: ProductsAndUsers,
     unique: true,
   },
 });
 Product.belongsToMany(ProductCategory, {
-  through: { model: ProductsAndCategories, unique: true },
+  through: { model: ProductsAndUsers, unique: true },
 });
 
-export default { Product, Review };
+export default { Product, Review, User, Category };
