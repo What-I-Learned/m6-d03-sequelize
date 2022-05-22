@@ -6,7 +6,7 @@ const ProductsAndUsers = sequelize.define("productsAndUsers", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true,
+    // autoIncrement: true,
   },
 });
 
